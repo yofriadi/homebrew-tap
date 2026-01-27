@@ -11,7 +11,11 @@ class OpencodeNightly < Formula
   depends_on "git"
 
   def install
-    system "bun", "install"
+    ENV["CI"] = "1"
+    ENV["HUSKY"] = "0"
+    ENV["HOME"] = buildpath.to_s
+
+    system "bun", "install", "--frozen-lockfile", "--no-progress", "--ignore-scripts"
 
     cd "packages/opencode" do
       system "bun", "run", "build", "--", "--single"
