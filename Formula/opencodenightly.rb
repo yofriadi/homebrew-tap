@@ -12,7 +12,7 @@ class Opencodenightly < Formula
 
   def install
     unless which("bun")
-      system "curl", "-fsSL", "https://bun.sh/install", "|", "bash"
+      system "sh", "-c", "curl -fsSL https://bun.sh/install | bash"
       ENV.prepend_path "/opt/homebrew/.bun/bin"
     end
 
