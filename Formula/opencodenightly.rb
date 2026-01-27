@@ -6,11 +6,16 @@ class Opencodenightly < Formula
   
   license "MIT"
 
-  depends_on "bun"
+  depends_on "node"
   depends_on "ripgrep"
   depends_on "git"
 
   def install
+    unless which("bun")
+      system "curl", "-fsSL", "https://bun.sh/install", "|", "bash"
+      ENV.prepend_path "/opt/homebrew/.bun/bin"
+    end
+
     system "bun", "install"
     system "bun", "run", "build"
 
