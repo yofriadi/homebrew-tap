@@ -1,4 +1,4 @@
-class OpencodeNightly < Formula
+class Opencodenightly < Formula
   desc "The AI coding agent (Nightly Fork)"
   homepage "https://github.com/yofriadi/opencode"
   url "https://github.com/yofriadi/opencode.git", branch: "dev"
@@ -14,19 +14,19 @@ class OpencodeNightly < Formula
     system "bun", "install"
     system "bun", "run", "build"
 
-    bin.install "packages/cli/dist/index.js" => "opencode-nightly"
+    bin.install "packages/cli/dist/index.js" => "ocn"
   end
 
   def caveats
     <<~EOS
       Your fork of opencode has been installed as:
-        opencode-nightly
+        ocn
 
       This prevents conflicts with official 'opencode' binary.
     EOS
   end
 
   test do
-    assert_match "opencode", shell_output("#{bin}/opencode-nightly --version")
+    assert_match "opencode", shell_output("#{bin}/ocn --version")
   end
 end
