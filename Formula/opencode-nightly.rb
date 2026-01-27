@@ -1,22 +1,16 @@
-class Opencodenightly < Formula
+class OpencodeNightly < Formula
   desc "The AI coding agent (Nightly Fork)"
   homepage "https://github.com/yofriadi/opencode"
   url "https://github.com/yofriadi/opencode.git", branch: "dev"
   version "0.0.1"
-  
+
   license "MIT"
 
-  depends_on "node"
+  depends_on "oven-sh/bun/bun"
   depends_on "ripgrep"
   depends_on "git"
 
   def install
-    unless which("bun")
-      system "curl", "-fsSL", "https://bun.sh/install", "-o", "/tmp/install-bun.sh"
-      system "bash", "/tmp/install-bun.sh"
-      ENV.prepend_path "/opt/homebrew/.bun/bin"
-    end
-
     system "bun", "install"
     system "bun", "run", "build"
 
@@ -28,7 +22,7 @@ class Opencodenightly < Formula
       Your fork of opencode has been installed as:
         ocn
 
-      This prevents conflicts with official 'opencode' binary.
+      This prevents conflicts with the official 'opencode' binary.
     EOS
   end
 

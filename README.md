@@ -1,14 +1,13 @@
-# homebrew-tap
+# homebrew-opencode
 
-Personal Homebrew tap for custom packages
+Personal Homebrew tap for a nightly OpenCode fork.
 
 ## How to use
 
 ```bash
+brew tap oven-sh/bun
 brew tap yofriadi/opencode
-brew install yofriadi/opencode/opencode
+brew install yofriadi/opencode/opencode-nightly
 ```
 
-## Available packages
-
-- `opencode` - Custom build of OpenCode with additional fixes and features
+The binary installs as `ocn` (no conflict with the official `opencode`).
