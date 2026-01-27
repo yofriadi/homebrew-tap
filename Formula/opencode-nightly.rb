@@ -12,9 +12,15 @@ class OpencodeNightly < Formula
 
   def install
     system "bun", "install"
-    system "bun", "run", "build"
 
-    bin.install "packages/cli/dist/index.js" => "ocn"
+    cd "packages/opencode" do
+      system "bun", "run", "build", "--", "--single"
+    end
+
+    platform = OS.mac? ? "darwin" : "linux"
+    arch = Hardware::CPU.arm? ? "arm64" : "x64"
+    name = "opencode-#{platform}-#{arch}"
+    bin.install "packages/opencode/dist/#{name}/bin/opencode" => "ocn"
   end
 
   def caveats
