@@ -1,31 +1,14 @@
 class OpencodeNightly < Formula
   desc "The AI coding agent (Nightly Fork)"
   homepage "https://github.com/yofriadi/opencode"
-  version "0.0.1"
+  version "2026.01.27"
 
   license "MIT"
 
   depends_on "ripgrep"
 
-  on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/yofriadi/opencode/releases/download/v#{version}/opencode-nightly-darwin-arm64.zip"
-      sha256 :no_check
-    else
-      url "https://github.com/yofriadi/opencode/releases/download/v#{version}/opencode-nightly-darwin-x64.zip"
-      sha256 :no_check
-    end
-  end
-
-  on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/yofriadi/opencode/releases/download/v#{version}/opencode-nightly-linux-arm64.tar.gz"
-      sha256 :no_check
-    else
-      url "https://github.com/yofriadi/opencode/releases/download/v#{version}/opencode-nightly-linux-x64.tar.gz"
-      sha256 :no_check
-    end
-  end
+  url "https://github.com/yofriadi/opencode/releases/download/v#{version}/ocn-darwin-arm64.zip"
+  sha256 "add3f2c743c9fad4ed415b7464214debd2ca43e58e4ac482909c00724f5eba21"
 
   def install
     bin.install "opencode" => "ocn"
