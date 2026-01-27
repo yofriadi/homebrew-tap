@@ -1,7 +1,7 @@
 class OpencodeNightly < Formula
   desc "The AI coding agent (Nightly Fork)"
   homepage "https://github.com/yofriadi/opencode"
-  version "2026.01.27"
+  version "2026-01-27"
 
   license "MIT"
 
