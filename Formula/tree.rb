@@ -1,4 +1,4 @@
-class TreePete < Formula
+class Tree < Formula
   desc "Cross-platform tree CLI implemented in Rust by peteretelej"
   homepage "https://github.com/peteretelej/tree"
   version "1.3.0"
@@ -13,10 +13,10 @@ class TreePete < Formula
   end
 
   def install
-    bin.install "tree" => "tree-pete"
+    bin.install "tree"
   end
 
   test do
-    assert_match "tree", shell_output("#{bin}/tree-pete --version")
+    assert_match "tree", shell_output("#{bin}/tree --version")
   end
 end
