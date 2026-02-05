@@ -1,13 +1,13 @@
 class OpencodeNightly < Formula
   desc "The AI coding agent (Nightly Fork)"
   homepage "https://github.com/yofriadi/opencode"
-  version "1.1.48-20260203"
+  version "1.1.51-20260205"
   license "MIT"
 
   depends_on "ripgrep"
 
   url "https://github.com/yofriadi/opencode/releases/download/v#{version}/ocn-darwin-arm64.zip"
-  sha256 "279a4a5cbd4f6f06b94f615bca72d33a96ec4b4150e18ee9131e068063b07894"
+  sha256 "3cb56c01d1b93529c8011988e104553a96aed3103c656426d7beec66b176e88b"
 
   def install
     bin.install "opencode" => "ocn"
