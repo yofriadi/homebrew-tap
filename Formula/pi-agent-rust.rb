@@ -9,10 +9,12 @@ class PiAgentRust < Formula
 
   depends_on "fd" => :recommended
   depends_on "ripgrep" => :recommended
-  depends_on "rust" => :build
+  depends_on "rustup" => :build
 
   def install
-    system "cargo", "install", "--path", ".", "--no-default-features"
+    system "rustup", "install", "nightly"
+    system "rustup", "default", "nightly"
+    system "cargo", "install", "--path", "."
     bin.install "target/release/pi" => "pir"
   end
 
