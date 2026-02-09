@@ -2,7 +2,7 @@ class Pib < Formula
   desc "AI coding agent CLI (pi Bun fork)"
   homepage "https://github.com/yofriadi/pi-bun-mono"
   version "0.52.9"
-  revision 1
+  revision 2
   license "MIT"
 
   on_macos do
@@ -18,16 +18,12 @@ class Pib < Formula
   def install
     libexec.install Dir["*"]
 
-    # Current release archives ship with pi metadata/binary names.
-    # Rebrand locally so runtime/help/default config use pib.
-    inreplace libexec/"package.json", /("name"\s*:\s*)"pi"/, "\\1\"pib\""
-    inreplace libexec/"package.json", /("configDir"\s*:\s*)"\.pi"/, "\\1\".pib\""
-
+    # Keep upstream metadata so pib shares the same config tree as pi (~/.pi/agent).
     bin.install_symlink libexec/"pi" => "pib"
   end
 
   test do
     assert_match version.to_s, shell_output("#{bin}/pib --version")
-    assert_match "pib - AI coding assistant", shell_output("#{bin}/pib --help")
+    assert_match "AI coding assistant", shell_output("#{bin}/pib --help")
   end
 end
