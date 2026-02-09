@@ -2,16 +2,16 @@ class Pi < Formula
   desc "AI coding agent CLI"
   homepage "https://github.com/yofriadi/pi-bun-mono"
   version "0.52.9"
-  revision 1
+  revision 2
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/yofriadi/pi-bun-mono/releases/download/v#{version}/pi-darwin-arm64.tar.gz"
-      sha256 "c4551cd1f859114846aadfb33f47f0327fa1ce243d6c619411dc3ee9ab3ac8d8"
+      sha256 "8ddf93c2288ce2635725fc8c0015fb138e9af8991edde0c528206ae21c5b68f4"
     else
       url "https://github.com/yofriadi/pi-bun-mono/releases/download/v#{version}/pi-darwin-x64.tar.gz"
-      sha256 "0ff8350b7f2833586318a4076e8fc910f27839543fbd7212dd44d406dec154e5"
+      sha256 "2f105b01bc3b43815d4b51bc527f1acfd666f2d02d33ca0c91fabb22077876a5"
     end
   end
 
