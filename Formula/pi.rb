@@ -2,6 +2,7 @@ class Pi < Formula
   desc "AI coding agent CLI"
   homepage "https://github.com/yofriadi/pi-bun-mono"
   version "0.52.9"
+  revision 1
   license "MIT"
 
   on_macos do
@@ -15,7 +16,7 @@ class Pi < Formula
   end
 
   def install
-    libexec.install Dir["pi/*"]
+    libexec.install Dir["*"]
     bin.install_symlink libexec/"pi"
   end
 
