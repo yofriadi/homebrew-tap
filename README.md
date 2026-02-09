@@ -1,13 +1,15 @@
 # homebrew-tap
 
-Personal Homebrew tap for a custom builds and fork
+Personal Homebrew tap for custom and forked builds.
 
 ## How to use
 
 ```bash
-brew tap yofriadi/opencode
-brew install yofriadi/opencode/opencode-nightly
-brew install yofriadi/opencode/tree
+brew tap yofriadi/tap
+brew install yofriadi/tap/pib
+brew install yofriadi/tap/opencode-nightly
+brew install yofriadi/tap/tree
 ```
 
-The binary installs as `ocn` (no conflict with the official `opencode`).
+`pib` installs as `pib`.
+`opencode-nightly` installs as `ocn` (no conflict with official `opencode`).
