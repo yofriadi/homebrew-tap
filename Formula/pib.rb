@@ -1,9 +1,8 @@
-require "json"
-
 class Pib < Formula
   desc "AI coding agent CLI (pi Bun fork)"
   homepage "https://github.com/yofriadi/pi-bun-mono"
   version "0.52.9"
+  revision 1
   license "MIT"
 
   on_macos do
@@ -21,12 +20,8 @@ class Pib < Formula
 
     # Current release archives ship with pi metadata/binary names.
     # Rebrand locally so runtime/help/default config use pib.
-    package_json_path = libexec/"package.json"
-    package_json = JSON.parse(package_json_path.read)
-    package_json["piConfig"] ||= {}
-    package_json["piConfig"]["name"] = "pib"
-    package_json["piConfig"]["configDir"] = ".pib"
-    package_json_path.write(JSON.pretty_generate(package_json))
+    inreplace libexec/"package.json", /("name"\s*:\s*)"pi"/, "\\1\"pib\""
+    inreplace libexec/"package.json", /("configDir"\s*:\s*)"\.pi"/, "\\1\".pib\""
 
     bin.install_symlink libexec/"pi" => "pib"
   end
