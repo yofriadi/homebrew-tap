@@ -5,6 +5,8 @@ class Pib < Formula
   license "MIT"
   revision 2
 
+  depends_on :macos
+
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/yofriadi/pi-bun-mono/releases/download/v#{version}/pi-darwin-arm64.tar.gz"

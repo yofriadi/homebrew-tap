@@ -6,6 +6,7 @@ class OpencodeNightly < Formula
   sha256 "3cb56c01d1b93529c8011988e104553a96aed3103c656426d7beec66b176e88b"
   license "MIT"
 
+  depends_on :macos
   depends_on "ripgrep"
 
   def install
