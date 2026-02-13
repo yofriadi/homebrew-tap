@@ -25,7 +25,8 @@ jobs:
       - name: Download bottles from the test-bot workflow
         uses: actions/download-artifact@v4
         with:
-          name: bottles
+          pattern: bottles-*
+          merge-multiple: true
           path: bottles
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
