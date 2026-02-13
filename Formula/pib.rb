@@ -2,8 +2,10 @@ class Pib < Formula
   desc "AI coding agent CLI (pi Bun fork)"
   homepage "https://github.com/yofriadi/pi-bun-mono"
   version "0.52.9"
-  revision 2
   license "MIT"
+  revision 2
+
+  depends_on :macos
 
   on_macos do
     if Hardware::CPU.arm?
@@ -13,6 +15,11 @@ class Pib < Formula
       url "https://github.com/yofriadi/pi-bun-mono/releases/download/v#{version}/pi-darwin-x64.tar.gz"
       sha256 "2f105b01bc3b43815d4b51bc527f1acfd666f2d02d33ca0c91fabb22077876a5"
     end
+  end
+
+  on_linux do
+    url "https://github.com/yofriadi/pi-bun-mono/releases/download/v#{version}/pi-darwin-x64.tar.gz"
+    sha256 "2f105b01bc3b43815d4b51bc527f1acfd666f2d02d33ca0c91fabb22077876a5"
   end
 
   def install
