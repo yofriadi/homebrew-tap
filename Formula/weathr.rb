@@ -12,6 +12,6 @@ class Weathr < Formula
   end
 
   test do
-    system "#{bin}/weathr", "--version"
+    assert_match version.to_s, shell_output("#{bin}/weathr --version")
   end
 end
