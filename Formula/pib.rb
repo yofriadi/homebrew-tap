@@ -17,10 +17,6 @@ class Pib < Formula
     end
   end
 
-  on_linux do
-    url "https://github.com/yofriadi/pi-bun-mono/releases/download/v#{version}/pi-darwin-x64.tar.gz"
-    sha256 "2f105b01bc3b43815d4b51bc527f1acfd666f2d02d33ca0c91fabb22077876a5"
-  end
 
   def install
     libexec.install Dir["*"]
