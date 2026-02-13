@@ -3,6 +3,8 @@ class CmdWrapped < Formula
   homepage "https://github.com/YiNNx/cmd-wrapped"
   license "MIT"
 
+  depends_on :macos
+
   if Hardware::CPU.arm?
     url "https://github.com/YiNNx/cmd-wrapped/releases/download/v0.4.1/cmd-wrapped-arm64-apple-darwin.zip"
     sha256 "4b659cab817f88236fc7f3e6bd1d0deb18d6db7eced88dea803cbc4baa04c1ec"

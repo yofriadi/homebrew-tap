@@ -4,7 +4,6 @@ class Pib < Formula
   url "https://github.com/yofriadi/pi-bun-mono/releases/download/v0.52.9/pi-darwin-x64.tar.gz"
   sha256 "2f105b01bc3b43815d4b51bc527f1acfd666f2d02d33ca0c91fabb22077876a5"
   license "MIT"
-  revision 2
 
   depends_on :macos
 
