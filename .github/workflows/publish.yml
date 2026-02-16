@@ -5,19 +5,11 @@ on:
       - Weathr Homebrew CI
     types:
       - completed
-  push:
-    branches:
-      - main
-      - master
-    paths:
-      - Formula/*.rb
-      - .github/workflows/publish.yml
-      - .github/workflows/tests.yml
   workflow_dispatch:
     inputs:
       pr_number:
-        description: "Pull request number (e.g. 26) or PR URL (optional for push-style dry run)"
-        required: false
+        description: "Pull request number (e.g. 26) or PR URL"
+        required: true
 
 jobs:
   pr-pull:
@@ -93,8 +85,13 @@ jobs:
             echo "No bottle commit to push."
           fi
 
-  push-ci:
-    if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
+  push-publish:
+    if: |
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      (github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'main') &&
+      github.event.workflow_run.actor.login != 'github-actions[bot]'
     runs-on: macos-latest
     permissions:
       contents: write
@@ -150,11 +147,3 @@ jobs:
           else
             echo "No bottle commit to push."
           fi
-
-      - name: Upload bottles as artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: bottles_push_${{ github.sha }}
-          path: '*.bottle.*'
-          if-no-files-found: ignore
