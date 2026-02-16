@@ -7,8 +7,8 @@ class Weathr < Formula
   revision 3
 
   bottle do
-    root_url "https://github.com/yofriadi/homebrew-tap/releases/download/weathr-1.2.3_2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d5a629e1bd8ccc43b5d86115f1e6cdd07a4b880ebe5beff131d5dfdba6634a3f"
+    root_url "https://github.com/yofriadi/homebrew-tap/releases/download/weathr-1.2.3_3"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "603f648be1d475c460ed8ab05b9c915ecec559f51d75b6c4c79d269c69deaa0b"
   end
 
   depends_on "rust" => :build
