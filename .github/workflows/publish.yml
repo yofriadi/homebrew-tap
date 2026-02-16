@@ -2,7 +2,7 @@ name: brew pr-pull
 on:
   workflow_run:
     workflows:
-      - brew test-bot
+      - Weathr Homebrew CI
     types:
       - completed
   workflow_dispatch:
