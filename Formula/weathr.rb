@@ -6,6 +6,11 @@ class Weathr < Formula
   license "GPL-3.0-only"
   revision 2
 
+  bottle do
+    root_url "https://github.com/yofriadi/homebrew-tap/releases/download/weathr-1.2.3_2"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d5a629e1bd8ccc43b5d86115f1e6cdd07a4b880ebe5beff131d5dfdba6634a3f"
+  end
+
   depends_on "rust" => :build
   depends_on :macos
 
