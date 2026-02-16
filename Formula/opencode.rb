@@ -1,5 +1,5 @@
-class OpencodeNightly < Formula
-  desc "AI coding agent (Nightly Fork)"
+class Opencode < Formula
+  desc "AI coding agent"
   homepage "https://github.com/yofriadi/opencode"
   url "https://github.com/yofriadi/opencode/releases/download/v1.1.51-20260205/ocn-darwin-arm64.zip"
   version "1.1.51-20260205"
@@ -10,19 +10,17 @@ class OpencodeNightly < Formula
   depends_on "ripgrep"
 
   def install
-    bin.install "opencode" => "ocn"
+    bin.install "opencode" => "oc"
   end
 
   def caveats
     <<~EOS
-      Your fork of opencode has been installed as:
-        ocn
-
-      This prevents conflicts with the official 'opencode' binary.
+      Opencode has been installed as:
+        oc
     EOS
   end
 
   test do
-    assert_match "opencode", shell_output("#{bin}/ocn --version")
+    assert_match "opencode", shell_output("#{bin}/oc --version")
   end
 end

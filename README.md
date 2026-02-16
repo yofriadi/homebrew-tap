@@ -7,13 +7,13 @@ Personal Homebrew tap for custom and forked builds.
 ```bash
 brew tap yofriadi/tap
 brew install yofriadi/tap/pib
-brew install yofriadi/tap/opencode-nightly
+brew install yofriadi/tap/opencode
 brew install yofriadi/tap/tree
 brew install yofriadi/tap/weathr
 ```
 
 - `pib` installs as `pib`
-- `opencode-nightly` installs as `ocn` (no conflict with official `opencode`)
+- `opencode` installs as `oc`
 
 ---
 

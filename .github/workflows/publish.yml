@@ -2,7 +2,7 @@ name: brew publish
 on:
   workflow_run:
     workflows:
-      - Weathr Homebrew CI
+      - Tap Homebrew CI
     types:
       - completed
   workflow_dispatch:

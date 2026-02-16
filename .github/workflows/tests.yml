@@ -1,4 +1,4 @@
-name: Weathr Homebrew CI
+name: Tap Homebrew CI
 on:
   push:
     branches:
