@@ -5,8 +5,8 @@ class Weathr < Formula
   sha256 "705aef1706e08dff92979f960f9534e8c02cb81ac8b2c0325e2b86dca05a5ff6"
   license "GPL-3.0-only"
 
-  depends_on :macos
   depends_on "rust" => :build
+  depends_on :macos
 
   def install
     system "cargo", "install", *std_cargo_args
