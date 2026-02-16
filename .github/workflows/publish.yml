@@ -85,7 +85,10 @@ jobs:
           TAP_REPO="$(brew --repo "${GITHUB_REPOSITORY_OWNER}/tap")"
           git -C "$TAP_REPO" fetch origin master
           if [ -n "$(git -C "$TAP_REPO" log --oneline origin/master..HEAD)" ]; then
-            git -C "$TAP_REPO" push origin HEAD:master
+            git -C "$TAP_REPO" push origin HEAD:master || {
+              git -C "$TAP_REPO" pull --rebase origin master
+              git -C "$TAP_REPO" push origin HEAD:master
+            }
           else
             echo "No bottle commit to push."
           fi
