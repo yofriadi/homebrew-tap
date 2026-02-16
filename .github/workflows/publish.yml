@@ -69,9 +69,9 @@ jobs:
           PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            brew pr-pull --debug --warn-on-upload-failure --no-cherry-pick "$PR_NUMBER" --tap="$GITHUB_REPOSITORY" --root-url="https://ghcr.io/v2/$GITHUB_REPOSITORY"
+            brew pr-pull --debug --warn-on-upload-failure --no-cherry-pick "$PR_NUMBER" --tap="$GITHUB_REPOSITORY" --root-url="https://ghcr.io/v2/${GITHUB_REPOSITORY_OWNER}/tap"
           else
-            brew pr-pull --debug --warn-on-upload-failure "$PR_NUMBER" --tap="$GITHUB_REPOSITORY" --root-url="https://ghcr.io/v2/$GITHUB_REPOSITORY"
+            brew pr-pull --debug --warn-on-upload-failure "$PR_NUMBER" --tap="$GITHUB_REPOSITORY" --root-url="https://ghcr.io/v2/${GITHUB_REPOSITORY_OWNER}/tap"
           fi
 
       - name: Push bottle commit to master (if any)
