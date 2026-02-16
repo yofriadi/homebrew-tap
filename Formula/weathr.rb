@@ -6,6 +6,7 @@ class Weathr < Formula
   license "GPL-3.0-only"
 
   depends_on "rust" => :build
+  depends_on :macos
 
   def install
     system "cargo", "install", *std_cargo_args
