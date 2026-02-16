@@ -35,7 +35,7 @@ git push -u origin weathr-1.3.1
 
 Open PR to `master`.
 
-### 3) Wait for `Weathr Homebrew CI`
+### 3) Wait for `Tap Homebrew CI`
 
 The workflow `.github/workflows/tests.yml` runs on PR.
 
@@ -83,5 +83,5 @@ The workflow will normalize the PR number and run `brew pr-pull` again.
 ## Notes
 
 - Primary branch is `master`.
-- Publish is CI-gated: expected order is `push/PR` → `Weathr Homebrew CI` → `brew publish`.
-- For direct-push bottle automation, use the `push-publish` job path in `publish.yml`.
+- Publish is CI-gated: expected order is `push/PR` → `Tap Homebrew CI` → `brew publish`.
+- Publish uses PR-style flow only (`pr-pull`); there is no direct `push-publish` path.

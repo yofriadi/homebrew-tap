@@ -6,14 +6,16 @@ Repository rules for humans and coding agents.
 These rules apply to the whole repository.
 
 ## CI/CD Rules
-1. **Do not run publish directly on `push`.**
-   - `.github/workflows/publish.yml` must be triggered by `workflow_run` from **Weathr Homebrew CI**.
+1. **Use PR-style publish flow only (no direct push publish).**
+   - `.github/workflows/publish.yml` must not include a `push-publish` job.
+   - Publishing is done via `pr-pull` only.
 2. **Publish must be gated by successful CI first.**
-   - Expected order: `push` → `Weathr Homebrew CI` → `brew publish`.
-3. **Avoid workflow loops.**
-   - Keep bot-actor guards (e.g. skip when actor is `github-actions[bot]`) for push-publish paths.
-4. **Keep PR bottle flow working.**
-   - Manual/PR `pr-pull` path in `publish.yml` should remain supported.
+   - `.github/workflows/publish.yml` is triggered by `workflow_run` from **Tap Homebrew CI**.
+   - Expected order: `push`/`pull_request` → `Tap Homebrew CI` → `brew publish` (PR path only).
+3. **Keep PR bottle flow working.**
+   - Manual/PR `pr-pull` path in `publish.yml` must remain supported.
+4. **Avoid duplicate publish runs.**
+   - Keep workflow-level `concurrency` in `publish.yml` (`cancel-in-progress: true`).
 
 ## Formula Update Rules
 1. For version bumps, update `url` + `sha256` together.
