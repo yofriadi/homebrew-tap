@@ -16,7 +16,8 @@ class Pir < Formula
   end
 
   def install
-    bin.install "pi" => "pir"
+    binary_name = Hardware::CPU.arm? ? "pi-aarch64-apple-darwin" : "pi"
+    bin.install binary_name => "pir"
   end
 
   test do
