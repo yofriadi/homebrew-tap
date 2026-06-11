@@ -2,7 +2,6 @@ class Pir < Formula
   desc "AI coding agent CLI (Rust implementation)"
   homepage "https://github.com/Dicklesworthstone/pi_agent_rust"
   url "https://github.com/Dicklesworthstone/pi_agent_rust/releases/download/v0.1.2/pi"
-  version "0.1.2"
   sha256 "4c25523eb4d4230dc87fab2b0de5d900e81bf08df2eb8cc70f899f8ffbf88cfa"
   license "MIT"
 
