@@ -4,6 +4,7 @@ class Ticgit < Formula
   url "https://github.com/schacon/ticgit/archive/refs/tags/v0.3.1.tar.gz"
   sha256 "04f9fa1532ac4e32054c66a0e1e0053bcca92332299f3f0b7afd8cf9787acbfc"
   license "MIT"
+  revision 1
 
   depends_on "rust" => :build
   depends_on :macos
