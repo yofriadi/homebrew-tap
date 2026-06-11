@@ -6,12 +6,14 @@ Personal Homebrew tap for custom and forked builds.
 
 ```bash
 brew tap yofriadi/tap
+brew install yofriadi/tap/pir
 brew install yofriadi/tap/pib
 brew install yofriadi/tap/opencode
 brew install yofriadi/tap/tree
 brew install yofriadi/tap/weathr
 ```
 
+- `pir` installs as `pir`
 - `pib` installs as `pib`
 - `opencode` installs as `oc`
 
