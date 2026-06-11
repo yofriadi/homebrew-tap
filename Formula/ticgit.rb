@@ -6,6 +6,11 @@ class Ticgit < Formula
   license "MIT"
   revision 1
 
+  bottle do
+    root_url "https://github.com/yofriadi/homebrew-tap/releases/download/ticgit-0.3.1_1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9d3f5cd4dcecf973706410f5fd1ed25c6ae40ab015057680b2fe694aedef1137"
+  end
+
   depends_on "rust" => :build
   depends_on :macos
 
