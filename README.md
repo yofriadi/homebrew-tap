@@ -11,11 +11,13 @@ brew install yofriadi/tap/pib
 brew install yofriadi/tap/opencode
 brew install yofriadi/tap/tree
 brew install yofriadi/tap/weathr
+brew install yofriadi/tap/ticgit
 ```
 
 - `pir` installs as `pir`
 - `pib` installs as `pib`
 - `opencode` installs as `oc`
+- `ticgit` installs as `ti`
 
 ---
 
