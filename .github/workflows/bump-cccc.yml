@@ -4,7 +4,12 @@ on:
   schedule:
     # Run daily at 02:00 UTC
     - cron: '0 2 * * *'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Force bump even if versions match"
+        required: false
+        default: "false"
 
 concurrency:
   group: bump-cccc
