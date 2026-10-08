@@ -3,6 +3,11 @@ class Cccc < Formula
   homepage "https://github.com/moznion/cccc"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/yofriadi/homebrew-tap/releases/download/cccc-1.7.1"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe: "31d101b65ec90325f57d256ca55b677613f80a96732ad40819d30aa74cd479c4"
+  end
+
   on_macos do
     on_arm do
       url "https://github.com/moznion/cccc/releases/download/v1.7.1/cccc-v1.7.1-aarch64-apple-darwin.tar.gz"
