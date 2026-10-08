@@ -10,6 +10,7 @@ brew install yofriadi/tap/tree
 brew install yofriadi/tap/weathr
 brew install yofriadi/tap/ticgit
 brew install yofriadi/tap/uteke
+brew install yofriadi/tap/cccc
 ```
 
 - `ticgit` installs as `ti`
