@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       force:
-        description: "Force bump even if versions match"
+        description: "Force check even if versions match"
         required: false
         default: "false"
 
@@ -28,109 +28,9 @@ jobs:
           token: ${{ secrets.TAP_BOT_TOKEN || secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Check latest upstream version
-        id: check
+      - name: Run bump script
         env:
           GH_TOKEN: ${{ secrets.TAP_BOT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
-          UPSTREAM_TAG=$(gh api repos/moznion/cccc/releases/latest --jq .tag_name)
-          UPSTREAM_VER="${UPSTREAM_TAG#v}"
-
-          CURRENT_VER=$(grep -oE 'releases/download/v[0-9.]+' Formula/cccc.rb | head -1 | sed 's#releases/download/v##')
-
-          echo "Current version: $CURRENT_VER"
-          echo "Upstream version: $UPSTREAM_VER"
-
-          if [ -n "$UPSTREAM_VER" ] && [ "$UPSTREAM_VER" != "$CURRENT_VER" ]; then
-            echo "bump_needed=true" >> "$GITHUB_OUTPUT"
-            echo "new_version=$UPSTREAM_VER" >> "$GITHUB_OUTPUT"
-            echo "new_tag=$UPSTREAM_TAG" >> "$GITHUB_OUTPUT"
-          else
-            echo "bump_needed=false" >> "$GITHUB_OUTPUT"
-            echo "Formula is already up-to-date."
-          fi
-
-      - name: Update formula and open PR
-        if: steps.check.outputs.bump_needed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.TAP_BOT_TOKEN || secrets.GITHUB_TOKEN }}
-          TAG: ${{ steps.check.outputs.new_tag }}
-          VER: ${{ steps.check.outputs.new_version }}
-        run: |
-          BRANCH="cccc-${VER}"
-
-          # Check if PR or branch already exists
-          if gh pr list --head "$BRANCH" --state all --json number --jq '.[0].number' | grep -q '^[0-9]'; then
-            echo "Pull request or branch for $BRANCH already exists. Skipping."
-            exit 0
-          fi
-
-          # Fetch checksums from upstream release assets
-          BASE_URL="https://github.com/moznion/cccc/releases/download/${TAG}"
-          SHA_MAC_ARM=$(curl -sSfL "${BASE_URL}/cccc-${TAG}-aarch64-apple-darwin.sha256" | awk '{print $1}')
-          SHA_MAC_INTEL=$(curl -sSfL "${BASE_URL}/cccc-${TAG}-x86_64-apple-darwin.sha256" | awk '{print $1}')
-          SHA_LINUX_ARM=$(curl -sSfL "${BASE_URL}/cccc-${TAG}-aarch64-unknown-linux-musl.sha256" | awk '{print $1}')
-          SHA_LINUX_INTEL=$(curl -sSfL "${BASE_URL}/cccc-${TAG}-x86_64-unknown-linux-musl.sha256" | awk '{print $1}')
-
-          if [ -z "$SHA_MAC_ARM" ] || [ -z "$SHA_MAC_INTEL" ] || [ -z "$SHA_LINUX_ARM" ] || [ -z "$SHA_LINUX_INTEL" ]; then
-            echo "Error: Failed to fetch all required checksums for ${TAG}."
-            exit 1
-          fi
-
-          git checkout -b "$BRANCH"
-
-          cat <<EOF > Formula/cccc.rb
-class Cccc < Formula
-  desc "Measure Cognitive and Cyclomatic Complexity of source code"
-  homepage "https://github.com/moznion/cccc"
-  license "MIT"
-
-  on_macos do
-    on_arm do
-      url "${BASE_URL}/cccc-${TAG}-aarch64-apple-darwin.tar.gz"
-      sha256 "${SHA_MAC_ARM}"
-    end
-    on_intel do
-      url "${BASE_URL}/cccc-${TAG}-x86_64-apple-darwin.tar.gz"
-      sha256 "${SHA_MAC_INTEL}"
-    end
-  end
-
-  on_linux do
-    on_arm do
-      url "${BASE_URL}/cccc-${TAG}-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "${SHA_LINUX_ARM}"
-    end
-    on_intel do
-      url "${BASE_URL}/cccc-${TAG}-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "${SHA_LINUX_INTEL}"
-    end
-  end
-
-  def install
-    bin.install "cccc"
-  end
-
-  test do
-    assert_match version.to_s, shell_output("#{bin}/cccc --version")
-    (testpath/"test.rs").write <<~RUST
-      fn main() {
-        println!("hello");
-      }
-    RUST
-    assert_match "cyclomatic", shell_output("#{bin}/cccc test.rs")
-  end
-end
-EOF
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Formula/cccc.rb
-          git commit -m "cccc: bump to ${VER}"
-          git push -u origin "$BRANCH"
-
-          gh pr create \
-            --base master \
-            --head "$BRANCH" \
-            --title "cccc: bump to ${VER}" \
-            --body "Automated version bump for \`cccc\` to \`${VER}\`."
+          chmod +x .github/scripts/bump-cccc.sh
+          ./.github/scripts/bump-cccc.sh "${{ github.event.inputs.force || 'false' }}"
