@@ -11,6 +11,7 @@ brew install yofriadi/tap/weathr
 brew install yofriadi/tap/ticgit
 brew install yofriadi/tap/uteke
 brew install yofriadi/tap/cccc
+brew install --cask yofriadi/tap/font-commit-mono
 ```
 
 - `ticgit` installs as `ti`

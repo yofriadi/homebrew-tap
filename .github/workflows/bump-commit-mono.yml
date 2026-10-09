@@ -1,0 +1,41 @@
+name: Check for Commit Mono updates
+
+on:
+  schedule:
+    # Run daily at 03:00 UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Force check even if versions match"
+        required: false
+        default: "false"
+
+concurrency:
+  group: bump-commit-mono
+  cancel-in-progress: true
+
+jobs:
+  bump-commit-mono:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TAP_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run bump script
+        env:
+          GH_TOKEN: ${{ secrets.TAP_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x .github/scripts/bump-commit-mono.sh
+          ./.github/scripts/bump-commit-mono.sh "${{ github.event.inputs.force || 'false' }}"
