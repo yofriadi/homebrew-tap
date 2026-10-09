@@ -13,7 +13,7 @@ brew install yofriadi/tap/uteke
 brew install yofriadi/tap/cccc
 brew install --cask yofriadi/tap/font-commit-mono
 brew install --cask yofriadi/tap/font-commit-mono-nerd-font
-brew install --cask yofriadi/tap/font-recursive-mono-nl-nerd-font
+brew install --cask yofriadi/tap/font-recursive-mono-nerd-font
 ```
 
 - `ticgit` installs as `ti`
