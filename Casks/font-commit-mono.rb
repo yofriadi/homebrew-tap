@@ -4,6 +4,7 @@ cask "font-commit-mono" do
 
   url "https://github.com/yofriadi/homebrew-tap/releases/download/commit-mono-v#{version}/CommitMono-all-v#{version}.zip"
   name "Commit Mono"
+  desc "Anonymous and neutral programming typeface"
   homepage "https://commitmono.com/"
 
   livecheck do

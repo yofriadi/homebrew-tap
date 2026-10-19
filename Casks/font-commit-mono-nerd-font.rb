@@ -4,7 +4,7 @@ cask "font-commit-mono-nerd-font" do
 
   url "https://github.com/yofriadi/homebrew-tap/releases/download/commit-mono-v#{version}/CommitMonoNerdFont-v#{version}.tar.xz"
   name "Commit Mono Nerd Font"
-  desc "Anonymous and neutral programming typeface with Nerd Font glyphs and named weights"
+  desc "Anonymous and neutral programming typeface with Nerd Font glyphs"
   homepage "https://commitmono.com/"
 
   livecheck do

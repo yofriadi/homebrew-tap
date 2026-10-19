@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+
+cd "${REPO_ROOT}"
+
 # Check latest upstream version
 UPSTREAM_TAG=$(gh api repos/moznion/cccc/releases/latest --jq .tag_name)
 UPSTREAM_VER="${UPSTREAM_TAG#v}"
@@ -20,9 +25,9 @@ fi
 
 BRANCH="cccc-${UPSTREAM_VER}"
 
-# Check if PR already exists
-if gh pr list --head "$BRANCH" --state all --json number --jq '.[0].number' 2>/dev/null | grep -q '^[0-9]'; then
-  echo "Pull request or branch for $BRANCH already exists. Skipping."
+# Check if an open PR already exists
+if gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null | grep -q '^[0-9]'; then
+  echo "Open pull request for $BRANCH already exists. Skipping."
   exit 0
 fi
 
@@ -38,7 +43,7 @@ if [ -z "$SHA_MAC_ARM" ] || [ -z "$SHA_MAC_INTEL" ] || [ -z "$SHA_LINUX_ARM" ] |
   exit 1
 fi
 
-git checkout -b "$BRANCH"
+git checkout -B "$BRANCH"
 
 cat <<EOF > Formula/cccc.rb
 class Cccc < Formula
@@ -88,7 +93,7 @@ git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git add Formula/cccc.rb
 git commit -m "cccc: bump to ${UPSTREAM_VER}"
-git push -u origin "$BRANCH"
+git push --force -u origin "$BRANCH"
 
 gh pr create \
   --base master \

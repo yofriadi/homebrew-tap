@@ -4,7 +4,7 @@ cask "font-recursive-mono-nerd-font" do
 
   url "https://github.com/yofriadi/homebrew-tap/releases/download/recursive-v#{version}/RecMonoNerdFont-v#{version}.tar.xz"
   name "Recursive Mono Nerd Font"
-  desc "Variable-inspired programming font with all subfamilies and weights, patched with Nerd Font glyphs"
+  desc "Variable-inspired programming font patched with Nerd Font glyphs"
   homepage "https://www.recursive.design/"
 
   livecheck do
