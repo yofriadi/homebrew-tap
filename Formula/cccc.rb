@@ -3,30 +3,25 @@ class Cccc < Formula
   homepage "https://github.com/moznion/cccc"
   license "MIT"
 
-  bottle do
-    root_url "https://github.com/yofriadi/homebrew-tap/releases/download/cccc-1.8.3"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe: "c40964fba16b04e48f99501a433c1487956cbdf8c68310ec2e93666bcd461393"
-  end
-
   on_macos do
     on_arm do
-      url "https://github.com/moznion/cccc/releases/download/v1.8.3/cccc-v1.8.3-aarch64-apple-darwin.tar.gz"
-      sha256 "838c487bd646b8223f89b22d2d6da34ee8972bf4d17d4abfe8726b30f3fdae89"
+      url "https://github.com/moznion/cccc/releases/download/v1.9.1/cccc-v1.9.1-aarch64-apple-darwin.tar.gz"
+      sha256 "fa3dd60b03c6906ee037980ab3f33ea9e03c064ce33d0d6558b789ca12c8c84f"
     end
     on_intel do
-      url "https://github.com/moznion/cccc/releases/download/v1.8.3/cccc-v1.8.3-x86_64-apple-darwin.tar.gz"
-      sha256 "0cc75222bef2b5d730012401c73cd09492f18e2ad1423645415447281a561abd"
+      url "https://github.com/moznion/cccc/releases/download/v1.9.1/cccc-v1.9.1-x86_64-apple-darwin.tar.gz"
+      sha256 "6e6205104c7af861f6f9082371dfd2f2e465a4ea7b1ec9fb00e7c1ad81ab115d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/moznion/cccc/releases/download/v1.8.3/cccc-v1.8.3-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "8aad9b34f398f32cafb2825dc2e7d68ab2dea51bd00e1bec1d2fb8370c8506f2"
+      url "https://github.com/moznion/cccc/releases/download/v1.9.1/cccc-v1.9.1-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "fd3773d8b143077f8065e8138a433eb4aad03c7266e84ec9845d0ef56f2a2179"
     end
     on_intel do
-      url "https://github.com/moznion/cccc/releases/download/v1.8.3/cccc-v1.8.3-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "9596a70e920ca9fd22ea541b773c2ddc6a63af4390da8864ebdfbcdc5949aa97"
+      url "https://github.com/moznion/cccc/releases/download/v1.9.1/cccc-v1.9.1-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "2de53ed83e828319e84a0e2501e28656c4dfe91b6e2e9a012e8d0a5f370151e2"
     end
   end
 
